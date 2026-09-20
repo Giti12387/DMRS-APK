@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.APKStore" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_600</item>
+        <item name="colorPrimaryVariant">@color/primary_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/secondary_600</item>
+        <item name="colorSecondaryVariant">@color/secondary_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="android:statusBarColor">@color/primary_700</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="colorControlHighlight">@color/ripple_color</item>
+    </style>
+
+    <style name="Theme.APKStore.NoActionBar" parent="Theme.APKStore">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

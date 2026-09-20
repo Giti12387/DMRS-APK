@@ -1,0 +1,147 @@
+<resources>
+    <string name="app_name">APK Store</string>
+    <string name="app_short_name">APKStore</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Main Screen -->
+    <string name="home_title">Home</string>
+    <string name="categories_title">Categories</string>
+    <string name="downloads_title">Downloads</string>
+    <string name="updates_title">Updates</string>
+    <string name="settings_title">Settings</string>
+    <string name="search_hint">Search apps\u2026</string>
+    <string name="featured_apps">Featured Apps</string>
+    <string name="top_charts">Top Charts</string>
+    <string name="new_releases">New Releases</string>
+    <string name="recommended_for_you">Recommended for You</string>
+    <string name="see_all">See All</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading\u2026</string>
+
+    <!-- App Detail -->
+    <string name="install">Install</string>
+    <string name="update">Update</string>
+    <string name="open">Open</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="version">Version</string>
+    <string name="size">Size</string>
+    <string name="developer">Developer</string>
+    <string name="category">Category</string>
+    <string name="updated_on">Updated on</string>
+    <string name="requires_android">Requires Android</string>
+    <string name="description">Description</string>
+    <string name="whats_new">What\'s New</string>
+    <string name="permissions">Permissions</string>
+    <string name="screenshots">Screenshots</string>
+    <string name="reviews">Reviews</string>
+    <string name="write_review">Write a Review</string>
+    <string name="similar_apps">Similar Apps</string>
+
+    <!-- Downloads -->
+    <string name="downloading">Downloading\u2026</string>
+    <string name="paused">Paused</string>
+    <string name="pending">Pending</string>
+    <string name="completed">Completed</string>
+    <string name="failed">Failed</string>
+    <string name="installing">Installing\u2026</string>
+    <string name="cancel">Cancel</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="delete">Delete</string>
+    <string name="clear_all">Clear All</string>
+    <string name="no_downloads">No downloads yet</string>
+    <string name="download_speed">Speed: %1$s</string>
+    <string name="time_remaining">Time remaining: %1$s</string>
+
+    <!-- Settings -->
+    <string name="auto_update">Auto-update apps</string>
+    <string name="auto_update_summary">Automatically update apps when on Wi-Fi</string>
+    <string name="download_preference">Download preference</string>
+    <string name="wifi_only">Wi-Fi only</string>
+    <string name="any_network">Any network</string>
+    <string name="notification_settings">Notifications</string>
+    <string name="download_notifications">Download notifications</string>
+    <string name="update_notifications">Update notifications</string>
+    <string name="storage_settings">Storage</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="cache_size">Cache size: %1$s</string>
+    <string name="download_location">Download location</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="external_storage">External Storage (SD Card)</string>
+    <string name="security_settings">Security</string>
+    <string name="biometric_auth">Biometric authentication</string>
+    <string name="biometric_auth_summary">Require biometric for installations</string>
+    <string name="unknown_sources">Install unknown apps</string>
+    <string name="unknown_sources_summary">Allow installation from this store</string>
+    <string name="about">About</string>
+    <string name="version_name">Version %1$s</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="open_source_licenses">Open Source Licenses</string>
+
+    <!-- Installation -->
+    <string name="installing_app">Installing %1$s\u2026</string>
+    <string name="install_complete">%1$s installed successfully</string>
+    <string name="install_failed">Failed to install %1$s</string>
+    <string name="install_blocked">Installation blocked</string>
+    <string name="enable_unknown_sources">Please enable \"Install unknown apps\" for this store</string>
+    <string name="signature_verification_failed">Signature verification failed. Install anyway?</string>
+    <string name="install_anyway">Install Anyway</string>
+    <string name="cancel_install">Cancel</string>
+    <string name="parsing_package">Parsing package\u2026</string>
+    <string name="replacing_app">Replacing existing app\u2026</string>
+    <string name="app_not_compatible">App not compatible with this device</string>
+    <string name="scanning_app">Scanning app for safety\u2026</string>
+    <string name="scan_safe">App is safe to install</string>
+    <string name="scan_warning">Warning: App has potential risks</string>
+    <string name="scan_dangerous">Dangerous: This app may harm your device</string>
+
+    <!-- Errors -->
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_server">Server error. Please try again later.</string>
+    <string name="error_not_found">App not found.</string>
+    <string name="error_download_failed">Download failed. %1$s</string>
+    <string name="error_install_failed">Installation failed. %1$s</string>
+    <string name="error_insufficient_storage">Insufficient storage space.</string>
+    <string name="error_permission_denied">Permission denied.</string>
+    <string name="error_unknown">An unknown error occurred.</string>
+
+    <!-- Categories -->
+    <string name="category_all">All</string>
+    <string name="category_tools">Tools</string>
+    <string name="category_productivity">Productivity</string>
+    <string name="category_communication">Communication</string>
+    <string name="category_media">Media</string>
+    <string name="category_games">Games</string>
+    <string name="category_social">Social</string>
+    <string name="category_education">Education</string>
+    <string name="category_health">Health &amp; Fitness</string>
+    <string name="category_finance">Finance</string>
+    <string name="category_shopping">Shopping</string>
+    <string name="category_travel">Travel</string>
+    <string name="category_utilities">Utilities</string>
+
+    <!-- App Info -->
+    <string name="version_code">Version Code: %1$d</string>
+    <string name="package_name">Package: %1$s</string>
+    <string name="min_sdk">Min SDK: %1$d</string>
+    <string name="target_sdk">Target SDK: %1$d</string>
+    <string name="install_date">Installed: %1$s</string>
+    <string name="last_used">Last used: %1$s</string>
+    <string name="never_used">Never used</string>
+
+    <!-- Update -->
+    <string name="update_available">Update available for %1$s</string>
+    <string name="update_all">Update All</string>
+    <string name="no_updates">All apps are up to date</string>
+    <string name="checking_updates">Checking for updates\u2026</string>
+    <string name="last_checked">Last checked: %1$s</string>
+
+    <!-- Biometric -->
+    <string name="biometric_prompt_title">Authenticate to install</string>
+    <string name="biometric_prompt_subtitle">Verify your identity to install %1$s</string>
+    <string name="biometric_prompt_description">Use your biometric to confirm installation</string>
+    <string name="biometric_fallback">Use PIN/Pattern</string>
+</resources>

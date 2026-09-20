@@ -1,0 +1,90 @@
+<resources>
+    <!-- Spacing -->
+    <dimen name="spacing_xxs">2dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xxl">48dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="margin_screen">16dp</dimen>
+    <dimen name="margin_card">12dp</dimen>
+    <dimen name="margin_section">24dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_screen">16dp</dimen>
+    <dimen name="padding_card">16dp</dimen>
+    <dimen name="padding_button_vertical">14dp</dimen>
+    <dimen name="padding_button_horizontal">24dp</dimen>
+    <dimen name="padding_chip_vertical">8dp</dimen>
+    <dimen name="padding_chip_horizontal">16dp</dimen>
+
+    <!-- Corner Radius -->
+    <dimen name="radius_xs">4dp</dimen>
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">12dp</dimen>
+    <dimen name="radius_lg">16dp</dimen>
+    <dimen name="radius_xl">24dp</dimen>
+    <dimen name="radius_full">9999dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_card_raised">8dp</dimen>
+    <dimen name="elevation_fab">6dp</dimen>
+    <dimen name="elevation_bottom_sheet">16dp</dimen>
+    <dimen name="elevation_modal">24dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="icon_xxs">12dp</dimen>
+    <dimen name="icon_xs">16dp</dimen>
+    <dimen name="icon_sm">20dp</dimen>
+    <dimen name="icon_md">24dp</dimen>
+    <dimen name="icon_lg">32dp</dimen>
+    <dimen name="icon_xl">48dp</dimen>
+    <dimen name="icon_xxl">64dp</dimen>
+
+    <!-- App Icon Sizes -->
+    <dimen name="app_icon_small">48dp</dimen>
+    <dimen name="app_icon_medium">64dp</dimen>
+    <dimen name="app_icon_large">96dp</dimen>
+    <dimen name="app_icon_xlarge">128dp</dimen>
+
+    <!-- Image Sizes -->
+    <dimen name="image_thumbnail">80dp</dimen>
+    <dimen name="image_card">120dp</dimen>
+    <dimen name="image_featured">200dp</dimen>
+    <dimen name="image_screenshot">280dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_xxs">10sp</dimen>
+    <dimen name="text_xs">12sp</dimen>
+    <dimen name="text_sm">14sp</dimen>
+    <dimen name="text_md">16sp</dimen>
+    <dimen name="text_lg">18sp</dimen>
+    <dimen name="text_xl">20sp</dimen>
+    <dimen name="text_xxl">24sp</dimen>
+    <dimen name="text_xxxl">32sp</dimen>
+
+    <!-- Layout -->
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="bottom_nav_height">72dp</dimen>
+    <dimen name="search_bar_height">48dp</dimen>
+    <dimen name="chip_height">32dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_height_large">56dp</dimen>
+    <dimen name="progress_height">6dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="list_item_height_large">96dp</dimen>
+
+    <!-- Grid -->
+    <dimen name="grid_column_count">2</dimen>
+    <dimen name="grid_spacing">12dp</dimen>
+
+    <!-- Animation -->
+    <integer name="anim_duration_short">150</integer>
+    <integer name="anim_duration_medium">300</integer>
+    <integer name="anim_duration_long">500</integer>
+</resources>

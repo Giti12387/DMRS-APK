@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.zoroapps.appstore",
+      "sha256_cert_fingerprints": [
+        "13:FC:B3:91:8C:67:A3:36:61:D8:12:44:32:FD:FA:C4:17:9A:17:51:D3:35:1E:26:1F:A1:4C:65:44:72:6D:F8"
+      ]
+    }
+  }
+]

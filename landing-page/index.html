@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APK Store - This site can't be opened</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff;
+            color: #333;
+            min-height: 100vh;
+        }
+        .error-page {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 80px 24px 40px;
+            text-align: center;
+        }
+        .error-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: #f1f3f4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+        .error-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+        .error-url {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 8px;
+            word-break: break-all;
+        }
+        .error-subtitle {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        .error-code {
+            font-size: 12px;
+            color: #9aa0a6;
+            margin-bottom: 48px;
+        }
+        .suggestion {
+            text-align: left;
+            background: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+        }
+        .suggestion h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #202124;
+            margin-bottom: 12px;
+        }
+        .suggestion ul {
+            list-style: none;
+            padding: 0;
+        }
+        .suggestion li {
+            font-size: 13px;
+            color: #5f6368;
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .suggestion li::before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            color: #9aa0a6;
+        }
+        .install-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 6px;
+            background: #1a73e8;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .install-btn:hover {
+            background: #1557b0;
+        }
+        .footer {
+            font-size: 12px;
+            color: #9aa0a6;
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid #e8eaed;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-icon">&#128230;</div>
+        <div class="error-title">This site can't be opened</div>
+        <div class="error-url" id="current-url"></div>
+        <div class="error-subtitle">
+            APK Store app is not installed on this device.<br>
+            Install it to open app links directly.
+        </div>
+
+        <div class="suggestion">
+            <h3>Try installing APK Store:</h3>
+            <ul>
+                <li>Click the install button below</li>
+                <li>Open the downloaded file</li>
+                <li>Allow installation from unknown sources</li>
+                <li>Open this link again</li>
+            </ul>
+        </div>
+
+        <a href="https://apk-store-apps.pages.dev" target="_blank" class="install-btn">
+            Install APK Store
+        </a>
+
+        <div class="footer" id="footer-text">ERR_BLOCKED_BY_CLIENT</div>
+    </div>
+
+    <script>
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('footer-text').textContent = 'ERR_APP_NOT_INSTALLED \u00B7 ' + window.location.hostname;
+    </script>
+</body>
+</html>

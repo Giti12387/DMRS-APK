@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  app-store-server:
+    build:
+      context: ./app-store-server
+      dockerfile: Dockerfile
+    container_name: zoro-app-store-server
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_PATH=/app/data/appstore.db
+      - UPLOAD_DIR=/app/uploads
+      - JWT_SECRET=${JWT_SECRET:-zoro-app-store-secret-change-me}
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:3000}
+    volumes:
+      - ./app-store-server/data:/app/data
+      - ./app-store-server/uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Reverse proxy with nginx
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: zoro-app-store-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./nginx/ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - app-store-server
+  #   restart: unless-stopped
+
+volumes:
+  app-store-data:
+  app-store-uploads:

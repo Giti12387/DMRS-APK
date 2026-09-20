@@ -1,0 +1,24 @@
+# Build outputs
+**/build/
+.gradle/
+local.properties
+*.apk
+*.ap_
+hs_err_*
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+dist/
+.wrangler/
+
+# Generated logs
+*.log

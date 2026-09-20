@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Block cleartext (HTTP) traffic in production -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Allow localhost only for dev/debug -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">10.0.2.2</domain>
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">127.0.0.1</domain>
+    </domain-config>
+
+    <!-- Pin Supabase certificates -->
+    <domain-config>
+        <domain includeSubdomains="true">supabase.co</domain>
+        <pin-set expiration="2027-01-01">
+            <pin digest="SHA-256">YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=</pin>
+            <pin digest="SHA-256">sRHdihwgkaib1P1gFa7mRmE079Jzz8QrG2y3uO7rbLc=</pin>
+        </pin-set>
+    </domain-config>
+</network-security-config>

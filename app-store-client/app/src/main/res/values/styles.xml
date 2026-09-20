@@ -1,0 +1,53 @@
+<resources>
+    <!-- Shape Appearances -->
+    <style name="ShapeAppearance.APKStore.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_sm</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_md</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_lg</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.BottomSheet" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomLeft">cut</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerSizeTopLeft">@dimen/radius_xl</item>
+        <item name="cornerSizeTopRight">@dimen/radius_xl</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.Chip" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_full</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.Button" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_md</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.Card" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_lg</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.Dialog" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_xl</item>
+    </style>
+
+    <style name="ShapeAppearance.APKStore.Fab" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_full</item>
+    </style>
+</resources>
