@@ -10,10 +10,6 @@ import java.security.PublicKey
 import java.util.Random
 import javax.net.ssl.SSLSocketFactory
 
-/**
- * Lightweight ADB client for wireless debugging.
- * Handles pairing + connect + shell + install without any external app.
- */
 object AdbClient {
 
     private const val TAG = "AdbClient"
@@ -28,6 +24,10 @@ object AdbClient {
 }
 
 class AdbConnection(private val host: String, private val port: Int) : Closeable {
+
+    companion object {
+        private const val TAG = "AdbConnection"
+    }
 
     private var socket: Socket? = null
     private var output: DataOutputStream? = null
@@ -52,7 +52,6 @@ class AdbConnection(private val host: String, private val port: Int) : Closeable
         val versionMsg = readMessage()
         Log.d(TAG, "Version: ${String(versionMsg.payload)}")
 
-        val versionBytes = "0016identity\x00${keyPair.public.encoded.size}\u0000".toByteArray()
         sendPacket(AdbPacket(AdbPacket.CMD_AUTH, 0, keyPair.public.encoded))
 
         val authResponse = readMessage()
@@ -105,7 +104,7 @@ class AdbConnection(private val host: String, private val port: Int) : Closeable
         output!!.write(stat)
         output!!.flush()
 
-        val recvId = readRawMessage().payload[0].code
+        val recvId = readRawMessage().payload[0].toInt() and 0xFF
         val mode = readInt()
         val size = readInt()
         val mtime = readInt()
@@ -115,7 +114,7 @@ class AdbConnection(private val host: String, private val port: Int) : Closeable
         output!!.write(intToBytes(localFile.length().toInt()))
         output!!.write(intToBytes(0))
         output!!.write(intToBytes(localFile.length().toInt()))
-        output!!.write(intToBytes(0x3B6)) // 0666 permissions
+        output!!.write(intToBytes(0x3B6))
         output!!.flush()
 
         val buffer = ByteArray(65536)
