@@ -250,9 +250,8 @@ class SupabaseApiService @Inject constructor() {
             val jsonBody = JSONObject().apply {
                 put("email", email)
                 put("password_hash", password)
-                put("display_name", name)
+                put("name", name)
                 put("is_active", true)
-                put("device_id", android.os.Build.MANUFACTURER + "_" + android.os.Build.MODEL)
                 put("role", "user")
             }
             val body = jsonBody.toString().toRequestBody("application/json".toMediaTypeOrNull())

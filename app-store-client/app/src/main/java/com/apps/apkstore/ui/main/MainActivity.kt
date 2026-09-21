@@ -21,11 +21,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import com.apps.apkstore.data.repository.AppRepository
 import com.apps.apkstore.ui.auth.LoginScreen
 import com.apps.apkstore.ui.auth.InstallMethodScreen
@@ -61,11 +64,24 @@ class MainActivity : ComponentActivity() {
 
         SelfUpdateManager.checkForUpdate(this) {
             setContent {
-                val prefs = remember { getSharedPreferences("zoro_prefs", Context.MODE_PRIVATE) }
                 val appPrefs = remember { getSharedPreferences("zoro_app_store_prefs", Context.MODE_PRIVATE) }
+                val prefs = remember { getSharedPreferences("zoro_prefs", Context.MODE_PRIVATE) }
                 val themeMode = remember { mutableIntStateOf(appPrefs.getInt("theme_mode", 0)) }
+
                 var loggedIn by remember { mutableStateOf(prefs.getBoolean("logged_in", false)) }
                 var installMethodChosen by remember { mutableStateOf(appPrefs.getBoolean("install_method_chosen", false)) }
+                var unknownSourcesOk by remember { mutableStateOf(checkUnknownSources(this@MainActivity)) }
+
+                val lifecycleOwner = LocalLifecycleOwner.current
+                DisposableEffect(lifecycleOwner) {
+                    val observer = LifecycleEventObserver { _, event ->
+                        if (event == Lifecycle.Event.ON_RESUME) {
+                            unknownSourcesOk = checkUnknownSources(this@MainActivity)
+                        }
+                    }
+                    lifecycleOwner.lifecycle.addObserver(observer)
+                    onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+                }
 
                 val onThemeChanged: (Int) -> Unit = { newTheme ->
                     themeMode.intValue = newTheme
@@ -73,47 +89,46 @@ class MainActivity : ComponentActivity() {
                 }
 
                 ProvideAppTheme(themeMode = themeMode.intValue, onThemeChanged = onThemeChanged) {
-                    var unknownSourcesOk by remember { mutableStateOf(checkUnknownSources(this@MainActivity)) }
-
-                    LaunchedEffect(Unit) {
-                        unknownSourcesOk = checkUnknownSources(this@MainActivity)
-                    }
-
-                    if (!unknownSourcesOk) {
-                        UnknownSourcesBlockingScreen(onOpenSettings = {
-                            val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
-                                data = Uri.parse("package:${packageName}")
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            }
-                            startActivity(intent)
-                        })
-                    } else if (!loggedIn) {
-                        LoginScreen(
-                            repository = repository,
-                            onLoginSuccess = {
-                                loggedIn = true
-                            },
-                            onBack = { finish() }
-                        )
-                    } else if (!installMethodChosen) {
-                        InstallMethodScreen(
-                            onMethodChosen = { method ->
-                                appPrefs.edit().putString("install_method", method).apply()
-                                appPrefs.edit().putBoolean("install_method_chosen", true).apply()
-                                installMethodChosen = true
-                            }
-                        )
-                    } else {
-                        val currentDeepLink by deepLinkAppId
-                        MainScaffold(
-                            onLogout = { loggedIn = false },
-                            onThemeChanged = onThemeChanged,
-                            currentThemeMode = themeMode.intValue,
-                            deepLinkAppId = currentDeepLink
-                        )
-                        LaunchedEffect(currentDeepLink) {
-                            if (currentDeepLink != null) {
-                                deepLinkAppId.value = null
+                    when {
+                        !unknownSourcesOk -> {
+                            UnknownSourcesBlockingScreen(onOpenSettings = {
+                                val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
+                                    data = Uri.parse("package:${packageName}")
+                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                }
+                                startActivity(intent)
+                            })
+                        }
+                        !loggedIn -> {
+                            LoginScreen(
+                                repository = repository,
+                                onLoginSuccess = {
+                                    loggedIn = true
+                                },
+                                onBack = { finish() }
+                            )
+                        }
+                        !installMethodChosen -> {
+                            InstallMethodScreen(
+                                onMethodChosen = { method ->
+                                    appPrefs.edit().putString("install_method", method).apply()
+                                    appPrefs.edit().putBoolean("install_method_chosen", true).apply()
+                                    installMethodChosen = true
+                                }
+                            )
+                        }
+                        else -> {
+                            val currentDeepLink by deepLinkAppId
+                            MainScaffold(
+                                onLogout = { loggedIn = false },
+                                onThemeChanged = onThemeChanged,
+                                currentThemeMode = themeMode.intValue,
+                                deepLinkAppId = currentDeepLink
+                            )
+                            LaunchedEffect(currentDeepLink) {
+                                if (currentDeepLink != null) {
+                                    deepLinkAppId.value = null
+                                }
                             }
                         }
                     }
@@ -126,58 +141,6 @@ class MainActivity : ComponentActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
         deepLinkAppId.value = extractAppIdFromIntent(intent)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val prefs = getSharedPreferences("zoro_prefs", Context.MODE_PRIVATE)
-        val appPrefs = getSharedPreferences("zoro_app_store_prefs", Context.MODE_PRIVATE)
-        val loggedIn = prefs.getBoolean("logged_in", false)
-        val unknownOk = checkUnknownSources(this)
-        val themeMode = appPrefs.getInt("theme_mode", 0)
-
-        setContent {
-            ProvideAppTheme(themeMode = themeMode, onThemeChanged = { newTheme ->
-                appPrefs.edit().putInt("theme_mode", newTheme).apply()
-            }) {
-                var loggedInState by remember { mutableStateOf(loggedIn) }
-                var unknownOkState by remember { mutableStateOf(unknownOk) }
-                var installMethodChosenState by remember { mutableStateOf(appPrefs.getBoolean("install_method_chosen", false)) }
-
-                if (!unknownOkState) {
-                    UnknownSourcesBlockingScreen(onOpenSettings = {
-                        val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
-                            data = Uri.parse("package:${packageName}")
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        }
-                        startActivity(intent)
-                    })
-                } else if (!loggedInState) {
-                        LoginScreen(repository = repository, onLoginSuccess = { loggedInState = true }, onBack = { finish() })
-                    } else if (!installMethodChosenState) {
-                        InstallMethodScreen(
-                            onMethodChosen = { method ->
-                                appPrefs.edit().putString("install_method", method).apply()
-                                appPrefs.edit().putBoolean("install_method_chosen", true).apply()
-                                installMethodChosenState = true
-                            }
-                        )
-                    } else {
-                        val appPrefs2 = getSharedPreferences("zoro_app_store_prefs", Context.MODE_PRIVATE)
-                        val tm = remember { mutableIntStateOf(appPrefs2.getInt("theme_mode", 0)) }
-                        val currentDeepLink by deepLinkAppId
-                        ProvideAppTheme(themeMode = tm.intValue, onThemeChanged = { newTheme ->
-                            tm.intValue = newTheme
-                            appPrefs2.edit().putInt("theme_mode", newTheme).apply()
-                        }) {
-                            MainScaffold(onLogout = { loggedInState = false }, onThemeChanged = { newTheme ->
-                                tm.intValue = newTheme
-                                appPrefs2.edit().putInt("theme_mode", newTheme).apply()
-                            }, currentThemeMode = tm.intValue, deepLinkAppId = currentDeepLink)
-                        }
-                    }
-            }
-        }
     }
 
     private fun checkUnknownSources(context: Context): Boolean {
@@ -196,12 +159,10 @@ class MainActivity : ComponentActivity() {
         val path = uri.path ?: return null
         val query = uri.query
 
-        // Format: /app-name/version/share?{appId}
         if (path.endsWith("/share") && !query.isNullOrEmpty()) {
             return query
         }
 
-        // Format: /app/{appId}
         if (path.startsWith("/app/")) {
             return path.removePrefix("/app/").takeIf { it.isNotEmpty() }
         }
