@@ -14,12 +14,5 @@
         <domain includeSubdomains="true">127.0.0.1</domain>
     </domain-config>
 
-    <!-- Pin Supabase certificates -->
-    <domain-config>
-        <domain includeSubdomains="true">supabase.co</domain>
-        <pin-set expiration="2027-01-01">
-            <pin digest="SHA-256">YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=</pin>
-            <pin digest="SHA-256">sRHdihwgkaib1P1gFa7mRmE079Jzz8QrG2y3uO7rbLc=</pin>
-        </pin-set>
-    </domain-config>
+    <!-- Cert pinning removed temporarily - was blocking Supabase API calls -->
 </network-security-config>
